@@ -20,8 +20,6 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} flex flex-col h-full`}>
         <PreventZoom />
         <div className="flex-grow">{children}</div>
-
-        <Footer />
       </body>
     </html>
   );
