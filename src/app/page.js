@@ -24,8 +24,6 @@ function ResponsiveCamera({ isMobile }) {
 }
 
 export default function Home() {
-  const [viewportHeight, setViewportHeight] = useState("100vh");
-
   const [isMobile, setIsMobile] = useState(false);
   const [page, setPage] = useState(0); // Estado que controla la página actual
   const [loading, setLoading] = useState(true); // Estado de carga del modelo
@@ -44,18 +42,6 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const updateVH = () => {
-      const vh = window.innerHeight * 0.01;
-      setViewportHeight(`${vh * 100}px`);
-    };
-
-    updateVH(); // Actualiza la altura en el montaje
-    window.addEventListener("resize", updateVH); // Actualiza la altura en el cambio de tamaño
-
-    return () => window.removeEventListener("resize", updateVH); // Limpia el evento en el desmontaje
-  }, []);
-
   const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
 
   return (
@@ -67,11 +53,7 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div
-              key="home"
-              style={{ height: viewportHeight }}
-              className="w-screen lg:h-screen"
-            >
+            <div key="home" className="w-screen lg:h-screen h-full fixed">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
 
               <Canvas className="absolute z-0">
