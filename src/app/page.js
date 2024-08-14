@@ -26,6 +26,7 @@ function ResponsiveCamera({ isMobile }) {
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [page, setPage] = useState(0); // Estado que controla la página actual
+  const [loading, setLoading] = useState(true); // Estado de carga del modelo
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +35,9 @@ export default function Home() {
 
     window.addEventListener("resize", handleResize);
     handleResize(); // Ejecutar una vez al montar el componente
+
+    // Simulación de carga de modelo 3D (ejemplo: 2 segundos)
+    const timeout = setTimeout(() => setLoading(false), 1500);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -45,20 +49,25 @@ export default function Home() {
       <PageTransition page={page}>
         {page === 0 && (
           <div key="home" className="w-screen h-screen relative">
-            {/* El modelo 3D estará al fondo */}
-            <Canvas className="fixed inset-0 z-0">
-              <ResponsiveCamera isMobile={isMobile} />
-              <ambientLight intensity={0.7} />
-              <directionalLight position={[10, 10, 5]} intensidad={3} />
-              <pointLight position={[0, 10, 10]} intensidad={1} />
-              <Environment preset="city" />
-              <Model scale={0.5} position={modelPosition} />
-              <OrbitControls
-                enableZoom={false}
-                enableRotate={false}
-                enablePan={false}
-              />
-            </Canvas>
+            {loading ? (
+              <div className="fixed inset-0 z-10 flex justify-center items-center bg-opacity-50">
+                <p className="text-2xl font-bold">Cargando...</p>
+              </div>
+            ) : (
+              <Canvas className="fixed inset-0 z-0">
+                <ResponsiveCamera isMobile={isMobile} />
+                <ambientLight intensity={0.7} />
+                <directionalLight position={[10, 10, 5]} intensidad={3} />
+                <pointLight position={[0, 10, 10]} intensidad={1} />
+                <Environment preset="city" />
+                <Model scale={0.5} position={modelPosition} />
+                <OrbitControls
+                  enableZoom={false}
+                  enableRotate={false}
+                  enablePan={false}
+                />
+              </Canvas>
+            )}
 
             {/* Contenedor de botones centrado verticalmente a la izquierda */}
             <div className="fixed inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
