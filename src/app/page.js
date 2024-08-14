@@ -37,7 +37,7 @@ export default function Home() {
     handleResize(); // Ejecutar una vez al montar el componente
 
     // Simulación de carga de modelo 3D (ejemplo: 2 segundos)
-    const timeout = setTimeout(() => setLoading(false), 1500);
+    const timeout = setTimeout(() => setLoading(false), 3000);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
