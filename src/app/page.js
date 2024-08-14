@@ -48,7 +48,7 @@ export default function Home() {
     <div className="min-h-screen w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-x-hidden">
       {loading ? (
         <div className="fixed inset-0 z-10 flex justify-center items-center ">
-          <p className="text-2xl font-bold">Loading...</p>
+          <p className="text-2xl font-bold">Cargando...</p>
         </div>
       ) : (
         <PageTransition page={page}>
