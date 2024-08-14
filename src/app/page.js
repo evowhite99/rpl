@@ -53,22 +53,8 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div key="home" className="w-screen h-screen relative">
+            <div key="home" className="w-screen min-h-screen relative">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
-
-              <Canvas className="fixed inset-0 z-0">
-                <ResponsiveCamera isMobile={isMobile} />
-                <ambientLight intensity={0.7} />
-                <directionalLight position={[10, 10, 5]} intensidad={3} />
-                <pointLight position={[0, 10, 10]} intensidad={1} />
-                <Environment preset="city" />
-                <Model scale={0.5} position={modelPosition} />
-                <OrbitControls
-                  enableZoom={false}
-                  enableRotate={false}
-                  enablePan={false}
-                />
-              </Canvas>
 
               {/* Contenedor de botones centrado verticalmente a la izquierda */}
               <div className="absolute inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
