@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import VideojuegosSection from "./components/Videojuegos";
+import Footer from "./components/Footer";
 
 // Cargar el modelo de manera dinámica
 const Model = dynamic(() => import("./components/Model"), { ssr: false });
@@ -134,6 +135,7 @@ export default function Home() {
           )}
         </PageTransition>
       )}
+      <Footer />
     </div>
   );
 }
