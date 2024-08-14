@@ -17,9 +17,11 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${inter.className} flex flex-col h-full`}>
+      <body className={`${inter.className} flex flex-col `}>
         <PreventZoom />
         <div className="flex-grow">{children}</div>
+
+        <Footer />
       </body>
     </html>
   );
