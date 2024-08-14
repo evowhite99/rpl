@@ -45,7 +45,7 @@ export default function Home() {
   const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
 
   return (
-    <div className="lg:min-h-screen h-auto w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
+    <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
       {loading ? (
         <div className="absolute inset-0 z-10 flex justify-center items-center ">
           <p className="text-2xl font-bold">Cargando...</p>
@@ -53,10 +53,10 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div key="home" className="w-screen lg:h-screen h-svh relative">
+            <div key="home" className="w-screen lg:h-screen h-svh ">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
 
-              <Canvas className="absolute h-svh z-0">
+              <Canvas className="absolute  z-0">
                 <ResponsiveCamera isMobile={isMobile} />
                 <ambientLight intensity={0.7} />
                 <directionalLight position={[10, 10, 5]} intensidad={3} />
@@ -71,7 +71,7 @@ export default function Home() {
               </Canvas>
 
               {/* Contenedor de botones centrado verticalmente a la izquierda */}
-              <div className="h-svh absolute inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
+              <div className=" absolute inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
                 {/* Lista de botones */}
                 <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
                   <button
