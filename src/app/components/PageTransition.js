@@ -33,7 +33,7 @@ export default function PageTransition({ children, page }) {
           animate="enter"
           exit="exit"
           variants={variants}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
           {children}
         </motion.div>
