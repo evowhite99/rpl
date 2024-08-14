@@ -4,8 +4,6 @@
 
 body {
   overflow-x: hidden; /* Oculta el desbordamiento horizontal */
-
-  overflow-y: auto; /* Permite el desplazamiento vertical */
 }
 
 :root {
