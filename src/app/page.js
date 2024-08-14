@@ -1,6 +1,6 @@
 "use client";
 import PageTransition from "./components/PageTransition";
-import { useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
@@ -26,7 +26,6 @@ function ResponsiveCamera({ isMobile }) {
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [page, setPage] = useState(0); // Estado que controla la página actual
-  const [loading, setLoading] = useState(true); // Estado de carga del modelo
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,9 +34,6 @@ export default function Home() {
 
     window.addEventListener("resize", handleResize);
     handleResize(); // Ejecutar una vez al montar el componente
-
-    // Simulación de carga de modelo 3D (ejemplo: 2 segundos)
-    const timeout = setTimeout(() => setLoading(false), 1600);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -49,25 +45,22 @@ export default function Home() {
       <PageTransition page={page}>
         {page === 0 && (
           <div key="home" className="w-screen h-screen relative">
-            {loading ? (
-              <div className="fixed inset-0 z-10 flex justify-center items-center bg-opacity-50">
-                <p className="text-2xl font-bold">Cargando...</p>
-              </div>
-            ) : (
-              <Canvas className="fixed inset-0 z-0">
-                <ResponsiveCamera isMobile={isMobile} />
-                <ambientLight intensity={0.7} />
-                <directionalLight position={[10, 10, 5]} intensidad={3} />
-                <pointLight position={[0, 10, 10]} intensidad={1} />
-                <Environment preset="city" />
+            {/* El modelo 3D estará al fondo */}
+            <Canvas className="fixed inset-0 z-0">
+              <ResponsiveCamera isMobile={isMobile} />
+              <ambientLight intensity={0.7} />
+              <directionalLight position={[10, 10, 5]} intensidad={3} />
+              <pointLight position={[0, 10, 10]} intensidad={1} />
+              <Environment preset="city" />
+              <Suspense fallback={<LoadingSpinner />}>
                 <Model scale={0.5} position={modelPosition} />
-                <OrbitControls
-                  enableZoom={false}
-                  enableRotate={false}
-                  enablePan={false}
-                />
-              </Canvas>
-            )}
+              </Suspense>
+              <OrbitControls
+                enableZoom={false}
+                enableRotate={false}
+                enablePan={false}
+              />
+            </Canvas>
 
             {/* Contenedor de botones centrado verticalmente a la izquierda */}
             <div className="fixed inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
@@ -134,6 +127,14 @@ export default function Home() {
           </div>
         )}
       </PageTransition>
+    </div>
+  );
+}
+
+function LoadingSpinner() {
+  return (
+    <div className="absolute inset-0 z-30 flex justify-center items-center bg-white bg-opacity-50">
+      <p className="text-2xl font-bold">Cargando...</p>
     </div>
   );
 }
