@@ -16,7 +16,7 @@ function ResponsiveCamera({ isMobile }) {
     if (isMobile) {
       camera.position.set(5, 3.3, 0);
     } else {
-      camera.position.set(2, 0.5, 2);
+      camera.position.set(0, 0, 0); // Cambia estos valores para acercar más la cámara
     }
   }, [isMobile, camera]);
 
@@ -42,10 +42,10 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
+  const modelPosition = isMobile ? [0, 2.5, 0] : [0, -0.6, -1.88];
 
   return (
-    <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
+    <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% ">
       {loading ? (
         <div className="absolute inset-0 z-10 flex justify-center items-center ">
           <p className="text-2xl font-bold">Cargando...</p>
@@ -53,10 +53,9 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div key="home" className="w-screen lg:h-screen h-full fixed">
-              {/* Mostrar un indicador de carga mientras el modelo se carga */}
-
-              <Canvas className="absolute z-0">
+            <div key="home" className="w-screen h-screen flex flex-col">
+              {/* Contenedor del modelo en la mitad superior */}
+              <Canvas className="flex-grow h-1/2 flex justify-center items-center">
                 <ResponsiveCamera isMobile={isMobile} />
                 <ambientLight intensity={0.7} />
                 <directionalLight position={[10, 10, 5]} intensidad={3} />
@@ -70,9 +69,8 @@ export default function Home() {
                 />
               </Canvas>
 
-              {/* Contenedor de botones centrado verticalmente a la izquierda */}
-              <div className=" absolute inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
-                {/* Lista de botones */}
+              {/* Contenedor de botones en la mitad inferior */}
+              <div className="flex-grow h-1/2 flex justify-center items-center lg:mb-20 mb-24">
                 <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
                   <button
                     onClick={() => setPage(1)}
