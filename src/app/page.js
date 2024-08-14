@@ -45,7 +45,7 @@ export default function Home() {
   const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
 
   return (
-    <div className="lg:min-h-screen h-screen w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
+    <div className=" w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
       {loading ? (
         <div className="absolute inset-0 z-10 flex justify-center items-center ">
           <p className="text-2xl font-bold">Cargando...</p>
@@ -56,7 +56,7 @@ export default function Home() {
             <div key="home" className="w-screen h-screen relative">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
 
-              <Canvas className="fixed inset-0 z-0">
+              <Canvas className="z-0">
                 <ResponsiveCamera isMobile={isMobile} />
                 <ambientLight intensity={0.7} />
                 <directionalLight position={[10, 10, 5]} intensidad={3} />
