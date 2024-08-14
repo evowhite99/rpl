@@ -19,8 +19,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className}  `}>
         <PreventZoom />
-        <Footer />
         <div className="">{children}</div>
+        <Footer />
       </body>
     </html>
   );
