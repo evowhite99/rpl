@@ -56,7 +56,7 @@ export default function Home() {
             <div key="home" className="w-screen h-screen relative">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
 
-              <Canvas className="relative inset-0 z-0">
+              <Canvas className="absolute  z-0">
                 <ResponsiveCamera isMobile={isMobile} />
                 <ambientLight intensity={0.7} />
                 <directionalLight position={[10, 10, 5]} intensidad={3} />
