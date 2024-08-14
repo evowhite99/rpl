@@ -1,113 +1,130 @@
-import Image from "next/image";
+"use client";
+import PageTransition from "./components/PageTransition";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, Environment } from "@react-three/drei";
+import VideojuegosSection from "./components/Videojuegos";
+
+// Cargar el modelo de manera dinámica
+const Model = dynamic(() => import("./components/Model"), { ssr: false });
+
+function ResponsiveCamera({ isMobile }) {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    if (isMobile) {
+      camera.position.set(5, 3.3, 0);
+    } else {
+      camera.position.set(2, 0.5, 2);
+    }
+  }, [isMobile, camera]);
+
+  return null;
+}
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [page, setPage] = useState(0); // Estado que controla la página actual
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Ejecutar una vez al montar el componente
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className="min-h-screen w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-x-hidden">
+      <PageTransition page={page}>
+        {page === 0 && (
+          <div key="home" className="w-screen h-screen relative">
+            {/* El modelo 3D estará al fondo */}
+            <Canvas className="fixed inset-0 z-0">
+              <ResponsiveCamera isMobile={isMobile} />
+              <ambientLight intensity={0.7} />
+              <directionalLight position={[10, 10, 5]} intensidad={3} />
+              <pointLight position={[0, 10, 10]} intensidad={1} />
+              <Environment preset="city" />
+              <Model scale={0.5} position={modelPosition} />
+              <OrbitControls
+                enableZoom={false}
+                enableRotate={false}
+                enablePan={false}
+              />
+            </Canvas>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+            {/* Contenedor de botones centrado verticalmente a la izquierda */}
+            <div className="fixed inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
+              {/* Lista de botones */}
+              <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
+                <button
+                  onClick={() => setPage(1)}
+                  className="bg-blue-500 text-white py-4 px-20 rounded text-center  hover:bg-green-500 hover:scale-110 duration-300"
+                  style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
+                >
+                  Música
+                </button>
+                <button
+                  onClick={() => setPage(2)}
+                  className="bg-blue-500 text-white py-4 px-20 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
+                  style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
+                >
+                  Videojuegos
+                </button>
+                <a
+                  href="https://www.rubenportfolio.com/"
+                  className="bg-blue-500 text-white py-4 px-20 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
+                  style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
+                >
+                  Portfolio
+                </a>
+                <button
+                  className="bg-blue-500 text-white text-center py-4 px-20 rounded hover:bg-green-500 hover:scale-110 duration-300"
+                  style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
+                >
+                  Próximamente...
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        {page === 1 && (
+          <div key="music" className="w-screen min-h-screen relative">
+            {/* Aquí iría la sección de música */}
+            <button
+              className="hover:bg-red-700"
+              onClick={() => setPage(0)}
+              style={{
+                position: "fixed",
+                top: "20px",
+                left: "20px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                border: "none",
+                borderRadius: "5px",
+                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)",
+                zIndex: 10,
+              }}
+            >
+              Volver
+            </button>
+          </div>
+        )}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        {page === 2 && (
+          <div key="games" className="w-screen min-h-screen relative">
+            <VideojuegosSection onBack={() => setPage(0)} />
+          </div>
+        )}
+      </PageTransition>
+    </div>
   );
 }
