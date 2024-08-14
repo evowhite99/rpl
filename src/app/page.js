@@ -51,7 +51,7 @@ export default function Home() {
               <ambientLight intensity={0.7} />
               <directionalLight position={[10, 10, 5]} intensidad={3} />
               <pointLight position={[0, 10, 10]} intensidad={1} />
-              <Environment preset="city" />
+              <Environment preset="forest" />
               <Suspense fallback={<LoadingSpinner />}>
                 <Model scale={0.5} position={modelPosition} />
               </Suspense>
@@ -133,7 +133,7 @@ export default function Home() {
 
 function LoadingSpinner() {
   return (
-    <div className="absolute inset-0 z-30 flex justify-center items-center bg-white bg-opacity-50">
+    <div className="absolute top-0 inset-0 z-10 flex justify-center items-center bg-white bg-opacity-50">
       <p className="text-2xl font-bold">Cargando...</p>
     </div>
   );

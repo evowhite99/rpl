@@ -4,23 +4,23 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
-export default function Model({ ...props }) {
+export default function Model({ isMobile, ...props }) {
   const { scene, materials } = useGLTF("/models/1971_gaz-24_volga_lp.glb");
   const modelRef = useRef();
 
   React.useEffect(() => {
     Object.values(materials).forEach((material) => {
       if (material) {
-        material.roughness = 0.2; // Disminuye la rugosidad para mayor reflexión
-        material.metalness = 1; // Aumenta la metalicidad para reflejos más fuertes
-        material.needsUpdate = true; // Asegura que los cambios se apliquen
+        material.roughness = isMobile ? 0.3 : 0.2; // Ajusta para móviles
+        material.metalness = isMobile ? 0.8 : 1; // Ajusta para móviles
+        material.needsUpdate = true;
       }
     });
   }, [materials]);
 
-  // Rotar el modelo continuamente
+  // Rotar el modelo continuamente solo si no es móvil
   useFrame((state, delta) => {
-    if (modelRef.current) {
+    if (modelRef.current && !isMobile) {
       modelRef.current.rotation.y += delta * -0.4; // Ajusta la velocidad de rotación
     }
   });
