@@ -24,7 +24,7 @@ export default function PageTransition({ children, page }) {
   };
 
   return (
-    <div style={{ overflow: "hidden", display: "block" }}>
+    <div style={{ overflow: "hidden" }}>
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={page}
