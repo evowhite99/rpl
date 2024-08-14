@@ -37,7 +37,7 @@ export default function Home() {
     handleResize(); // Ejecutar una vez al montar el componente
 
     // Simulación de carga de modelo 3D (ejemplo: 2 segundos)
-    const timeout = setTimeout(() => setLoading(false), 700);
+    const timeout = setTimeout(() => setLoading(false), 1000); // Pequeño retraso
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -45,7 +45,7 @@ export default function Home() {
   const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-x-hidden">
+    <div className="min-h-screen w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
       {loading ? (
         <div className="absolute inset-0 z-10 flex justify-center items-center ">
           <p className="text-2xl font-bold">Cargando...</p>
@@ -56,7 +56,7 @@ export default function Home() {
             <div key="home" className="w-screen h-screen relative">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
 
-              <Canvas className="absolute inset-0 z-0">
+              <Canvas className="fixed inset-0 z-0">
                 <ResponsiveCamera isMobile={isMobile} />
                 <ambientLight intensity={0.7} />
                 <directionalLight position={[10, 10, 5]} intensidad={3} />
@@ -136,14 +136,6 @@ export default function Home() {
           )}
         </PageTransition>
       )}
-    </div>
-  );
-}
-
-function LoadingSpinner() {
-  return (
-    <div className="absolute top-0 inset-0 z-10 flex justify-center items-center bg-white bg-opacity-50">
-      <p className="text-2xl font-bold">Cargando...</p>
     </div>
   );
 }
