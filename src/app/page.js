@@ -45,7 +45,7 @@ export default function Home() {
   const modelPosition = isMobile ? [0, 2.5, 0] : [0.5, 0.1, 0.5];
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
+    <div className="lg:min-h-screen h-dvh w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% overflow-hidden">
       {loading ? (
         <div className="absolute inset-0 z-10 flex justify-center items-center ">
           <p className="text-2xl font-bold">Cargando...</p>
@@ -53,8 +53,22 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div key="home" className="w-screen min-h-screen relative">
+            <div key="home" className="w-screen h-screen relative">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
+
+              <Canvas className="fixed inset-0 z-0">
+                <ResponsiveCamera isMobile={isMobile} />
+                <ambientLight intensity={0.7} />
+                <directionalLight position={[10, 10, 5]} intensidad={3} />
+                <pointLight position={[0, 10, 10]} intensidad={1} />
+                <Environment preset="city" />
+                <Model scale={0.5} position={modelPosition} />
+                <OrbitControls
+                  enableZoom={false}
+                  enableRotate={false}
+                  enablePan={false}
+                />
+              </Canvas>
 
               {/* Contenedor de botones centrado verticalmente a la izquierda */}
               <div className="absolute inset-x-0 bottom-0 lg:bottom-0 top-0 lg:top-auto z-10 flex flex-col justify-center items-center lg:justify-end lg:pb-32 pb-52 pt-60 lg:pt-0">
