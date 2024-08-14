@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% ">
       {loading ? (
-        <div className="absolute inset-0 z-10 flex justify-center items-center ">
+        <div className="flex flex-row min-h-screen justify-center items-center z-10 ">
           <p className="text-2xl font-bold">Cargando...</p>
         </div>
       ) : (
