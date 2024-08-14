@@ -47,6 +47,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% ">
+      <div className="fixed inset-x-0 bottom-0 z-10 text-center justify-center items-center  pt-4  pb-6 bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90%">
+        © 2024 - Rubén Pérez Lara
+      </div>
       {loading ? (
         <div className="flex flex-row min-h-screen justify-center items-center z-10 ">
           <p className="text-2xl font-bold">Cargando...</p>
@@ -135,9 +138,6 @@ export default function Home() {
           )}
         </PageTransition>
       )}
-      <div className="fixed inset-x-0 bottom-0 z-10 text-center justify-center items-center  pt-4  pb-6 bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90%">
-        © 2024 - Rubén Pérez Lara
-      </div>
     </div>
   );
 }
