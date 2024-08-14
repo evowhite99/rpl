@@ -49,7 +49,7 @@ export default function VideojuegosSection({ onBack }) {
       >
         Volver
       </button>
-      <div className="mt-10 text-2xl font-extrabold italic pt-5">
+      <div className=" text-2xl font-extrabold italic pt-5">
         Videojuegos recomendados
       </div>
       <div className="flex flex-col min-h-screen justify-between">
