@@ -53,7 +53,7 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div key="home" className="w-screen lg:h-screen h-lvh relative">
+            <div key="home" className="w-screen lg:h-screen h-svh relative">
               {/* Mostrar un indicador de carga mientras el modelo se carga */}
 
               <Canvas className="absolute  z-0">
