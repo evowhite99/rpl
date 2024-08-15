@@ -1,3 +1,7 @@
 export default function Footer() {
-  return null;
+  return (
+    <div className="flex justify-center items-center    pb-20 mt-20">
+      © 2024 - Rubén Pérez Lara
+    </div>
+  );
 }
