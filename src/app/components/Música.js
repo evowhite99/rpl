@@ -112,7 +112,10 @@ export default function MusicaSection({ onBack }) {
         ))}
       </select>
 
-      <div className="mt-10 flex justify-center items-center">
+      <p className="mt-5 text-sm">(Click en el vídeo si no lo detecta </p>
+      <p className=" text-sm">a la primera tu navegador de preferencia)</p>
+
+      <div className="mt-5 flex justify-center items-center">
         <button
           onClick={handlePreviousVideo}
           disabled={currentVideoIndex === 0}
@@ -126,7 +129,6 @@ export default function MusicaSection({ onBack }) {
           controls
           autoPlay
           playsinline
-          poster={currentVideoIndex === 0 ? "../videos/poster.png" : null}
           className="lg:w-1/5 lg:h-1/5 w-3/5 h-3/5 rounded-lg"
         />
 
