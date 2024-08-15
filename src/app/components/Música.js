@@ -112,8 +112,8 @@ export default function MusicaSection({ onBack }) {
         ))}
       </select>
 
-      <p className="mt-5 text-sm">(Click en el vídeo si no lo detecta </p>
-      <p className=" text-sm">a la primera tu navegador de preferencia)</p>
+      <p className="mt-5 text-sm">(Click en el vídeo si no detecta </p>
+      <p className=" text-sm">a la primera tu navegador habitual)</p>
 
       <div className="mt-5 flex justify-center items-center">
         <button
