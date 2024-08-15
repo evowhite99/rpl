@@ -71,7 +71,7 @@ export default function Home() {
               </Canvas>
 
               {/* Contenedor de botones en la mitad inferior */}
-              <div className="flex-grow h-1/2 flex justify-center items-center lg:mb-20 mb-24">
+              <div className="flex-grow h-1/2 flex justify-center items-center  ">
                 <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
                   <button
                     onClick={() => setPage(1)}
@@ -102,6 +102,7 @@ export default function Home() {
                   </button>
                 </div>
               </div>
+              <Footer />
             </div>
           )}
 
@@ -135,7 +136,6 @@ export default function Home() {
           )}
         </PageTransition>
       )}
-      <Footer />
     </div>
   );
 }
