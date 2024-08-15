@@ -7,6 +7,7 @@ import { OrbitControls, Environment } from "@react-three/drei";
 import VideojuegosSection from "./components/Videojuegos";
 import MusicaSection from "./components/Música";
 import Footer from "./components/Footer";
+import Particles from "./components/Particles";
 
 // Cargar el modelo de manera dinámica
 const Model = dynamic(() => import("./components/Model"), { ssr: false });
@@ -69,6 +70,7 @@ export default function Home() {
                   enableRotate={false}
                   enablePan={false}
                 />
+                <Particles />
               </Canvas>
 
               {/* Contenedor de botones en la mitad inferior */}
