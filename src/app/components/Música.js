@@ -126,11 +126,7 @@ export default function MusicaSection({ onBack }) {
           controls
           autoPlay
           playsinline
-          poster={
-            currentVideoIndex === 0
-              ? "../videos/thumbnails/db2024-1-thumb.jpg"
-              : null
-          }
+          poster={currentVideoIndex === 0 ? "../videos/poster.png" : null}
           className="lg:w-1/5 lg:h-1/5 w-3/5 h-3/5 rounded-lg"
         />
 
