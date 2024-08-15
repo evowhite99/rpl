@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import VideojuegosSection from "./components/Videojuegos";
+import MusicaSection from "./components/Música";
 import Footer from "./components/Footer";
 
 // Cargar el modelo de manera dinámica
@@ -90,18 +91,17 @@ export default function Home() {
                   >
                     Videojuegos
                   </button>
-                  <a
-                    href="https://www.rubenportfolio.com/"
+                  <button
                     className="bg-blue-500 text-white py-4 px-20 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
-                    Portfolio
-                  </a>
+                    ⌛
+                  </button>
                   <button
                     className="bg-blue-500 text-white text-center py-4 px-20 rounded hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
-                    Próximamente...
+                    ⌛
                   </button>
                 </div>
               </div>
@@ -111,24 +111,8 @@ export default function Home() {
 
           {page === 1 && (
             <div key="music" className="w-screen min-h-screen relative">
-              {/* Aquí iría la sección de música */}
-              <button
-                className="hover:bg-red-700"
-                onClick={() => setPage(0)}
-                style={{
-                  position: "fixed",
-                  top: "20px",
-                  left: "20px",
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                  border: "none",
-                  borderRadius: "5px",
-                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)",
-                  zIndex: 10,
-                }}
-              >
-                Volver
-              </button>
+              <MusicaSection onBack={() => setPage(0)} />
+              <Footer />
             </div>
           )}
 

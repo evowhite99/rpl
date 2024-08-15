@@ -71,7 +71,7 @@ export default function VideojuegosSection({ onBack }) {
   return (
     <div className="text-lg text-center ">
       <button
-        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 lg:animate-pulse animate-bounce"
+        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 lg:animate-pulse "
         onClick={onBack}
         style={{
           padding: "10px 20px",
@@ -104,7 +104,7 @@ export default function VideojuegosSection({ onBack }) {
       {visibleGames < gamesCol.length && (
         <button
           onClick={handleLoadMore}
-          className="mt-10 mr-40 lg:mr-0 px-6 py-3 bg-green-500 text-white rounded-lg duration-300  animate-bounce justify-start items-start relative"
+          className="mt-10 mr-40 lg:mr-0 px-6 py-3 bg-green-500 text-white rounded-lg duration-300   justify-start items-start relative"
         >
           Cargar más
         </button>
