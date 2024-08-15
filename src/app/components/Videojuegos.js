@@ -68,9 +68,9 @@ export default function VideojuegosSection({ onBack }) {
   };
 
   return (
-    <div className="text-lg text-center lg:pb-32">
+    <div className="text-lg text-center ">
       <button
-        className="hover:bg-red-700 fixed left-0 ml-52 mt-3"
+        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 animate-pulse "
         onClick={onBack}
         style={{
           padding: "10px 20px",
@@ -83,10 +83,10 @@ export default function VideojuegosSection({ onBack }) {
       >
         Volver
       </button>
-      <div className="text-2xl font-extrabold italic pt-5">
+      <div className="lg:text-2xl text-lg font-extrabold italic pt-6 ">
         Videojuegos recomendados
       </div>
-      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-left bg-cyan-900 bg-opacity-30 lg:w-7/12 w-11/12 mx-auto p-3 rounded-3xl pb-5">
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-left bg-cyan-900 bg-opacity-30 lg:w-7/12 w-11/12 mx-auto p-3 rounded-3xl pb-5 mb-20">
         {gamesCol.slice(0, visibleGames).map((game) => (
           <div key={game.name} className="relative">
             <img
@@ -103,7 +103,7 @@ export default function VideojuegosSection({ onBack }) {
       {visibleGames < gamesCol.length && (
         <button
           onClick={handleLoadMore}
-          className="mt-10 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-green-500 duration-300"
+          className="mt-10 mr-40 px-6 py-3 bg-green-500 text-white rounded-lg duration-300  animate-bounce justify-start items-start relative"
         >
           Cargar más
         </button>

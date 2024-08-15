@@ -132,6 +132,7 @@ export default function Home() {
           {page === 2 && (
             <div key="games" className="w-screen min-h-screen relative">
               <VideojuegosSection onBack={() => setPage(0)} />
+              <Footer />
             </div>
           )}
         </PageTransition>
