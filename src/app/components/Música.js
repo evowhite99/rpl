@@ -3,7 +3,6 @@ import { useState } from "react";
 export default function MusicaSection({ onBack }) {
   const festivalVideos = {
     "Dreambeach 2024": [
-      "../videos/prueba.mp4",
       "../videos/db2024-1.mp4",
       "../videos/db2024-2.mp4",
       "../videos/db2024-3.mp4",
