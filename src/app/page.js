@@ -55,10 +55,7 @@ export default function Home() {
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div
-              key="home"
-              className="w-screen  lg:h-screen h-svh flex flex-col"
-            >
+            <div key="home" className="w-screen  lg:h-screen  flex flex-col">
               {/* Contenedor del modelo en la mitad superior */}
               <Canvas className="flex-grow lg:h-1/2 flex justify-center items-center">
                 <ResponsiveCamera isMobile={isMobile} />

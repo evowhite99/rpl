@@ -124,6 +124,7 @@ export default function MusicaSection({ onBack }) {
         <video
           src={videos[currentVideoIndex]}
           controls
+          autoPlay
           className="lg:w-1/5 lg:h-1/5 w-3/5 h-3/5 rounded-lg"
         />
 
