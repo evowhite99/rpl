@@ -8,6 +8,7 @@ export default function VideojuegosSection({ onBack }) {
       name: "Ender Lilies: Quietus of the Knights",
       image: "../images/enderlilies.jpg",
     },
+    { name: "A hat in time", image: "../images/ahatintime.jpeg" },
     { name: "Doom Eternal", image: "../images/doometernal.jpg" },
 
     { name: "Final Fantasy XVI", image: "../images/ffxvi.jpg" },
@@ -35,7 +36,7 @@ export default function VideojuegosSection({ onBack }) {
       name: "Hotline Miami 1 + 2 Wrong Number",
       image: "../images/hotlinemiami.jpg",
     },
-    { name: "A hat in time", image: "../images/ahatintime.jpeg" },
+
     { name: "Need For Speed Pro Street", image: "../images/nfsprostreet.jpg" },
     {
       name: "Metal Gear Solid 3 Snake Eater",
@@ -70,7 +71,7 @@ export default function VideojuegosSection({ onBack }) {
   return (
     <div className="text-lg text-center ">
       <button
-        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 animate-pulse "
+        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 lg:animate-pulse animate-bounce"
         onClick={onBack}
         style={{
           padding: "10px 20px",
@@ -78,7 +79,7 @@ export default function VideojuegosSection({ onBack }) {
           border: "none",
           borderRadius: "5px",
           boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)",
-          zIndex: 10,
+          zIndex: 50,
         }}
       >
         Volver
@@ -86,7 +87,7 @@ export default function VideojuegosSection({ onBack }) {
       <div className="lg:text-2xl text-lg font-extrabold italic pt-6 ">
         Videojuegos recomendados
       </div>
-      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-left bg-cyan-900 bg-opacity-30 lg:w-7/12 w-11/12 mx-auto p-3 rounded-3xl pb-5 mb-20">
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-left bg-cyan-900 bg-opacity-30 lg:w-7/12 w-11/12 mx-auto p-3 rounded-3xl pb-5 lg:mb-10 mb-2">
         {gamesCol.slice(0, visibleGames).map((game) => (
           <div key={game.name} className="relative">
             <img
@@ -103,7 +104,7 @@ export default function VideojuegosSection({ onBack }) {
       {visibleGames < gamesCol.length && (
         <button
           onClick={handleLoadMore}
-          className="mt-10 mr-40 px-6 py-3 bg-green-500 text-white rounded-lg duration-300  animate-bounce justify-start items-start relative"
+          className="mt-10 mr-40 lg:mr-0 px-6 py-3 bg-green-500 text-white rounded-lg duration-300  animate-bounce justify-start items-start relative"
         >
           Cargar más
         </button>

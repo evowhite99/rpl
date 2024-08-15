@@ -15,7 +15,7 @@ function ResponsiveCamera({ isMobile }) {
 
   useEffect(() => {
     if (isMobile) {
-      camera.position.set(5, 3.3, 0);
+      camera.position.set(0, 0, 0);
     } else {
       camera.position.set(0, 0, 0); // Cambia estos valores para acercar más la cámara
     }
@@ -43,20 +43,23 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const modelPosition = isMobile ? [0, 2.5, 0] : [0, -0.6, -1.88];
+  const modelPosition = isMobile ? [0, -0.45, -1.88] : [0, -0.6, -1.88];
 
   return (
     <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% ">
       {loading ? (
-        <div className="flex flex-row min-h-screen justify-center items-center z-10 ">
+        <div className="flex flex-row min-h-screen justify-center items-center z-10 lg:pb-0 pb-60">
           <p className="text-2xl font-bold">Cargando...</p>
         </div>
       ) : (
         <PageTransition page={page}>
           {page === 0 && (
-            <div key="home" className="w-screen lg:h-screen flex flex-col">
+            <div
+              key="home"
+              className="w-screen  lg:h-screen h-svh flex flex-col"
+            >
               {/* Contenedor del modelo en la mitad superior */}
-              <Canvas className="flex-grow h-1/2 flex justify-center items-center">
+              <Canvas className="flex-grow lg:h-1/2 flex justify-center items-center">
                 <ResponsiveCamera isMobile={isMobile} />
                 <ambientLight intensity={0.7} />
                 <directionalLight position={[10, 10, 5]} intensidad={3} />
@@ -71,7 +74,7 @@ export default function Home() {
               </Canvas>
 
               {/* Contenedor de botones en la mitad inferior */}
-              <div className="flex-grow h-1/2 flex justify-center items-center  ">
+              <div className="flex-grow h-1/2 flex justify-center items-center  mb-10">
                 <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
                   <button
                     onClick={() => setPage(1)}
