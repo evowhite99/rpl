@@ -90,12 +90,13 @@ export default function Home() {
                   >
                     Videojuegos
                   </button>
-                  <button
+                  <a
+                    href="https://rpl.rubenportfolio.com"
                     className="bg-blue-500 text-white py-4 px-20 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
-                    ⌛
-                  </button>
+                    Portfolio
+                  </a>
                   <button
                     className="bg-blue-500 text-white text-center py-4 px-20 rounded hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
