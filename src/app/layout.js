@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className}  `}>
         <PreventZoom />
-        <div className="">{children}</div>
+        <div className="font-montserrat">{children}</div>
       </body>
     </html>
   );
