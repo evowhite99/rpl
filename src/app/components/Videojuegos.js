@@ -61,7 +61,6 @@ export default function VideojuegosSection({ onBack }) {
     },
   ];
 
-  // Estado para controlar cuántas imágenes mostrar
   const [visibleGames, setVisibleGames] = useState(10);
 
   const handleLoadMore = () => {
