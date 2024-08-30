@@ -1,7 +1,7 @@
 import { useState } from "react";
+import React, { memo } from "react";
 
-export default function VideojuegosSection({ onBack }) {
-  // Desestructurando la prop onBack
+function VideojuegosSection({ onBack }) {
   const gamesCol = [
     { name: "Demon's Souls", image: "../images/demonssouls.jpg" },
     {
@@ -10,17 +10,14 @@ export default function VideojuegosSection({ onBack }) {
     },
     { name: "A hat in time", image: "../images/ahatintime.jpeg" },
     { name: "Doom Eternal", image: "../images/doometernal.jpg" },
-
     { name: "Final Fantasy XVI", image: "../images/ffxvi.jpg" },
     { name: "Burnout Paradise", image: "../images/burnoutparadise.jpg" },
     { name: "Gran Turismo 7", image: "../images/granturismo7.jpg" },
     { name: "Wipeout Omega Collection", image: "../images/wipeout.jpg" },
-
     {
       name: "Bloodstained Ritual of the Night",
       image: "../images/bloodstained.jpg",
     },
-
     {
       name: "Need For Speed Hot Pursuit",
       image: "../images/nfshotpursuit.jpg",
@@ -36,12 +33,8 @@ export default function VideojuegosSection({ onBack }) {
       name: "Hotline Miami 1 + 2 Wrong Number",
       image: "../images/hotlinemiami.jpg",
     },
-
     { name: "Need For Speed Pro Street", image: "../images/nfsprostreet.jpg" },
-    {
-      name: "Metal Gear Solid 3 Snake Eater",
-      image: "../images/mgs3.webp",
-    },
+    { name: "Metal Gear Solid 3 Snake Eater", image: "../images/mgs3.webp" },
     { name: "Burnout 3 Takedown", image: "../images/burnout3.jpg" },
     {
       name: "Castlevania Symphony of the Night",
@@ -61,7 +54,6 @@ export default function VideojuegosSection({ onBack }) {
     },
   ];
 
-  // Estado para controlar cuántas imágenes mostrar
   const [visibleGames, setVisibleGames] = useState(10);
 
   const handleLoadMore = () => {
@@ -69,9 +61,9 @@ export default function VideojuegosSection({ onBack }) {
   };
 
   return (
-    <div className="text-lg text-center ">
+    <div className="text-lg text-center">
       <button
-        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 lg:animate-pulse "
+        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 lg:animate-pulse"
         onClick={onBack}
         style={{
           padding: "10px 20px",
@@ -84,7 +76,7 @@ export default function VideojuegosSection({ onBack }) {
       >
         Volver
       </button>
-      <div className="lg:text-2xl text-lg font-extrabold italic pt-6 ">
+      <div className="lg:text-2xl text-lg font-extrabold italic pt-6">
         Videojuegos recomendados
       </div>
       <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-left bg-cyan-900 bg-opacity-30 lg:w-7/12 w-11/12 mx-auto p-3 rounded-3xl pb-5 lg:mb-10 mb-2">
@@ -93,6 +85,7 @@ export default function VideojuegosSection({ onBack }) {
             <img
               src={game.image}
               alt={game.name}
+              loading="lazy"
               className="w-full h-auto rounded-lg hover:scale-105 transition-transform duration-300"
             />
             <span className="absolute bottom-0 left-0 bg-opacity-75 bg-black text-white text-sm p-2 rounded-t-lg">
@@ -104,7 +97,7 @@ export default function VideojuegosSection({ onBack }) {
       {visibleGames < gamesCol.length && (
         <button
           onClick={handleLoadMore}
-          className="mt-10 mr-40 lg:mr-0 px-6 py-3 bg-green-500 text-white rounded-lg duration-300   justify-start items-start relative"
+          className="mt-10 mr-40 lg:mr-0 px-6 py-3 bg-green-500 text-white rounded-lg duration-300 justify-start items-start relative"
         >
           Cargar más
         </button>
@@ -112,3 +105,5 @@ export default function VideojuegosSection({ onBack }) {
     </div>
   );
 }
+
+export default memo(VideojuegosSection);

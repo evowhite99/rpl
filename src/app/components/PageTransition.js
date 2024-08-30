@@ -1,17 +1,20 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PageTransition({ children, page }) {
-  const previousPage = useRef(page); // Guarda la página anterior
+  const previousPage = useRef(page);
 
-  // Lógica de dirección basada en la comparación de la página actual y la anterior
-  const direction = page - previousPage.current; // Si page es mayor, direction será positivo (ir a la derecha)
+  useEffect(() => {
+    previousPage.current = page; // Actualiza el valor de la página anterior después de cada renderizado
+  }, [page]);
+
+  const direction = page - previousPage.current;
 
   const variants = {
     initial: (direction) => ({
       opacity: 0,
-      x: direction > 0 ? "100%" : "-100%", // Si direction es positivo, entra desde la derecha
+      x: direction > 0 ? "100%" : "-100%",
     }),
     enter: {
       opacity: 1,
@@ -19,7 +22,7 @@ export default function PageTransition({ children, page }) {
     },
     exit: (direction) => ({
       opacity: 0,
-      x: direction > 0 ? "-100%" : "100%", // Si direction es positivo, sale hacia la izquierda
+      x: direction > 0 ? "-100%" : "100%",
     }),
   };
 

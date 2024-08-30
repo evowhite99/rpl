@@ -1,32 +1,37 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { memo } from "react";
 
-export default function Particles({ count = 1000 }) {
+function Particles({ count = 1000 }) {
   const meshRef = useRef();
-  const particlesCount = count;
 
-  useEffect(() => {
-    const particlesGeometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particlesCount * 3);
+  // Memoriza la geometría de las partículas para evitar recalculaciones innecesarias
+  const particlesGeometry = useMemo(() => {
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
 
-    for (let i = 0; i < particlesCount; i++) {
+    for (let i = 0; i < count; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 10;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
     }
 
-    particlesGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(positions, 3)
-    );
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
+    return geometry;
+  }, [count]);
+
+  // Asigna la geometría solo una vez
+  useEffect(() => {
     meshRef.current.geometry = particlesGeometry;
     meshRef.current.renderOrder = -1; // Asegura que las partículas se rendericen antes que el coche
-  }, [particlesCount]);
+  }, [particlesGeometry]);
 
-  useFrame(() => {
-    meshRef.current.rotation.y += 0.002;
+  // Rota las partículas con un intervalo más bajo para mejorar el rendimiento
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime();
+    meshRef.current.rotation.y = elapsedTime * 0.2; // Reduce la velocidad de rotación
   });
 
   return (
@@ -39,3 +44,5 @@ export default function Particles({ count = 1000 }) {
     </points>
   );
 }
+
+export default memo(Particles);
