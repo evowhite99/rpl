@@ -41,7 +41,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const modelPosition = isMobile ? [0, -0.45, -1.88] : [0, -0.6, -1.88];
+  const modelPosition = isMobile ? [0, -0.45, -1.88] : [0, -0.6, -1.881];
 
   return (
     <div className="min-h-screen  w-screen bg-gradient-to-r from-blue-800 from-10% via-blue-500 via-30% to-blue-950 to-90% ">
