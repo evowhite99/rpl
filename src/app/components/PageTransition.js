@@ -1,36 +1,30 @@
 "use client";
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const PageTransition = React.memo(({ children, page }) => {
+function PageTransition({ children, page }) {
   const previousPage = useRef(page);
 
   useEffect(() => {
-    previousPage.current = page;
+    previousPage.current = page; // Actualiza el valor de la página anterior después de cada renderizado
   }, [page]);
 
   const direction = page - previousPage.current;
 
-  const variants = useMemo(
-    () => ({
-      initial: (direction) => ({
-        opacity: 0,
-        x: direction > 0 ? "100%" : "-100%",
-        willChange: "opacity, transform",
-      }),
-      enter: {
-        opacity: 1,
-        x: 0,
-        willChange: "opacity, transform",
-      },
-      exit: (direction) => ({
-        opacity: 0,
-        x: direction > 0 ? "-100%" : "100%",
-        willChange: "opacity, transform",
-      }),
+  const variants = {
+    initial: (direction) => ({
+      opacity: 0,
+      x: direction > 0 ? "100%" : "-100%",
     }),
-    []
-  );
+    enter: {
+      opacity: 1,
+      x: 0,
+    },
+    exit: (direction) => ({
+      opacity: 0,
+      x: direction > 0 ? "-100%" : "100%",
+    }),
+  };
 
   return (
     <div style={{ overflow: "hidden" }}>
@@ -42,13 +36,15 @@ const PageTransition = React.memo(({ children, page }) => {
           animate="enter"
           exit="exit"
           variants={variants}
-          transition={{ duration: 0.5 }} // Reducido para mejorar la percepción de velocidad
+          transition={{ duration: 0.7 }}
         >
           {children}
         </motion.div>
       </AnimatePresence>
     </div>
   );
-});
+}
+
+PageTransition.displayName = "PageTransition";
 
 export default PageTransition;
