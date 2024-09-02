@@ -21,7 +21,11 @@ export default function WebPages({ onBack }) {
       <div className="lg:text-2xl text-lg font-extrabold italic pt-6">
         ¿Necesitas una página web?
       </div>
-      <div className="bg-white bg-opacity-30 lg:w-7/12 w-11/12 mx-auto  rounded-lg pb-10">
+      <p className="text-sm pr-5 pl-5 mt-2">
+        Creación de páginas web simples, profesionales, modernas y con modelos
+        3D.
+      </p>
+      <div className="bg-white bg-opacity-30 lg:w-7/12 w-11/12 mx-auto  rounded-lg pb-10 pl-5 pr-5">
         <div className="mt-10 lg:text-2xl text-lg font-extrabold  pt-6">
           Actualmente vendo y edito plantillas web
         </div>
@@ -36,26 +40,26 @@ export default function WebPages({ onBack }) {
           que tengan texto rojo.
         </p>
       </div>
-      <div className="mt-6 grid grid-cols-2  bg-white bg-opacity-30 lg:w-7/12 w-11/12 mx-auto  rounded-lg pb-10 pt-6">
+      <div className="mt-6 grid grid-cols-2 pl-5 pr-5 bg-white bg-opacity-30 lg:w-7/12 w-11/12 mx-auto  rounded-lg pb-10 pt-6">
         <p className=" text-3xl">50€</p>
         <p className="text-left">
-          Te doy la plantilla sin editar. (Solo las plantillas que he creado).
+          Te doy la página web sin editar. (Solo las plantillas que he creado).
         </p>
 
         <p className="mt-10 text-3xl">100€</p>
         <p className="text-left mt-10">
-          Te edito la web (portfolio/curriculum) y la gestiono para que tu
-          página web sea pública. (Solo las plantillas que he creado).
+          Te edito la página web (portfolio / curriculum) y la gestiono para que
+          tu página web sea pública. (Solo las plantillas que he creado).
         </p>
       </div>
       <div className="bg-white bg-opacity-30 lg:w-7/12 w-11/12 mx-auto  rounded-lg pb-10">
         <div className="mt-10 lg:text-2xl text-lg font-extrabold  pt-6"></div>
         <p className="mt-3 ">
-          Acepto efectivo en Librilla y cercanías. Acepto transferencia, bizum y
-          PayPal
+          Acepto efectivo en Librilla y cercanías. (Alhama de Murcia, Totana,
+          Alcantarilla).
         </p>
-        <p className="mt-3 ">Acepto transferencia, bizum y PayPal</p>
-        <p className="mt-3 ">
+        <p className="lg:mt-3 mt-5 ">Acepto transferencia, bizum y PayPal.</p>
+        <p className="lg:mt-3 mt-5 ">
           Para más preguntas, envíame un mensaje por
           <a
             href="https://www.instagram.com/evowhite99/"
@@ -65,6 +69,9 @@ export default function WebPages({ onBack }) {
           </a>
           .
         </p>
+      </div>
+      <div className="bg-white bg-opacity-30 lg:w-7/12 w-11/12 mx-auto mt-10 pt-6 rounded-lg pb-10">
+        Actualmente proyectos en cola: 2.
       </div>
     </div>
   );
