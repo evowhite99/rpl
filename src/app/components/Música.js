@@ -125,7 +125,7 @@ function MusicaSection({ onBack }) {
       </select>
 
       <p className="mt-5 text-sm">
-        (Click en el vídeo si no detecta a la primera tu navegador habitual)
+        (Click en el vídeo si no se reproduce automáticamente)
       </p>
 
       <div className="mt-5 flex justify-center items-center">
