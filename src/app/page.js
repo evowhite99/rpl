@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 const VideojuegosSection = lazy(() => import("./components/Videojuegos"));
 const MusicaSection = lazy(() => import("./components/Música"));
 const Particles = lazy(() => import("./components/Particles"));
+const WebPagesSection = lazy(() => import("./components/WebPages"));
 
 // Cargar el modelo de manera dinámica
 const Model = dynamic(() => import("./components/Model"), { ssr: false });
@@ -78,30 +79,31 @@ export default function Home() {
                 <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
                   <button
                     onClick={() => setPage(1)}
-                    className="bg-blue-500 text-white py-4 px-20 rounded text-center  hover:bg-green-500 hover:scale-110 duration-300"
+                    className="bg-blue-500 text-white py-4 px-12 rounded text-center  hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
                     Música
                   </button>
                   <button
                     onClick={() => setPage(2)}
-                    className="bg-blue-500 text-white py-4 px-20 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
+                    className="bg-blue-500 text-white py-4 px-12 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
                     Videojuegos
                   </button>
                   <a
                     href="https://www.rubenportfolio.com"
-                    className="bg-blue-500 text-white py-4 px-20 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
+                    className="bg-blue-500 text-white py-4 px-12 rounded text-center hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
                     Portfolio
                   </a>
                   <button
-                    className="bg-blue-500 text-white text-center py-4 px-20 rounded hover:bg-green-500 hover:scale-110 duration-300"
+                    onClick={() => setPage(3)}
+                    className="bg-blue-500 text-white text-center py-4 px-12 rounded hover:bg-green-500 hover:scale-110 duration-300"
                     style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.8)" }}
                   >
-                    ⌛
+                    ¿Necesitas una web?
                   </button>
                 </div>
               </div>
@@ -126,6 +128,17 @@ export default function Home() {
                 fallback={<div className="text-center mt-20">Cargando...</div>}
               >
                 <VideojuegosSection onBack={() => setPage(0)} />
+              </Suspense>
+              <Footer />
+            </div>
+          )}
+
+          {page === 3 && (
+            <div key="webs" className="w-screen min-h-screen relative">
+              <Suspense
+                fallback={<div className="text-center mt-20">Cargando...</div>}
+              >
+                <WebPagesSection onBack={() => setPage(0)} />
               </Suspense>
               <Footer />
             </div>

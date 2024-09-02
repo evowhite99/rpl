@@ -93,7 +93,7 @@ function MusicaSection({ onBack }) {
   return (
     <div className="text-lg text-center">
       <button
-        className="hover:bg-red-400 hover:scale-125 duration-150 bg-red-700 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 lg:animate-pulse"
+        className="hover:bg-red-700 hover:scale-125 duration-150 bg-red-700 bg-opacity-70 hover:bg-opacity-100 fixed lg:left-0 lg:inset-x-auto lg:inset-y-auto right-0 bottom-0 lg:mr-0 mr-12 lg:top-0 lg:ml-52 lg:mt-6 mb-20 "
         onClick={onBack}
         style={{
           padding: "10px 20px",
